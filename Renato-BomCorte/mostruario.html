@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostruário - Barbearia Bom Corte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B4513;
+            --primary-dark: #6B3410;
+            --dark: #1a1a1a;
+            --darker: #0f0f0f;
+            --light: #f5f5f5;
+            --gray: #666;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: var(--light);
+            border: 2px dashed var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+
+        .logo-placeholder i {
+            font-size: 2rem;
+            color: var(--gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-intro h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .gallery-intro p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 2rem 1rem 1rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Placeholder Images */
+        .placeholder-notice {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .placeholder-notice i {
+            font-size: 2rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+
+        .placeholder-notice h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .placeholder-notice p {
+            color: var(--gray);
+        }
+
+        /* Instagram CTA */
+        .instagram-cta {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .instagram-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .instagram-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-instagram {
+            background: white;
+            color: #bc1888;
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.4);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--darker);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #e8f4f8;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--gray);
+        }
+
+        .back-to-top {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-top:hover {
+            color: var(--primary);
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                left: -100%;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-placeholder">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="mostruario.html">Mostruário</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Mostruário de Cortes</h1>
+        <p>Confira nossos trabalhos e inspire-se para seu próximo visual</p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-intro">
+                <h2>Nossos Trabalhos</h2>
+                <p>Cada corte é uma obra de arte. Veja alguns dos nossos melhores trabalhos!</p>
+            </div>
+
+            <!-- Placeholder Notice -->
+            <div class="placeholder-notice">
+                <i class="fas fa-info-circle"></i>
+                <h3>Imagens Ilustrativas</h3>
+                <p>As imagens abaixo são exemplos. Substitua por fotos reais dos cortes realizados na barbearia.</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Corte Clássico</h3>
+                        <p>Estilo tradicional com acabamento moderno</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Barba Completa</h3>
+                        <p>Design profissional com navalha</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Degradê Premium</h3>
+                        <p>Fade alto com transição perfeita</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1599351431613-4e99b7cca195?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Corte Social</h3>
+                        <p>Elegância e sofisticação</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Estilo Moderno</h3>
+                        <p>Tendências atuais com personalidade</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Undercut</h3>
+                        <p>Visual ousado e marcante</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Barba Desenhada</h3>
+                        <p>Contornos precisos e definidos</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Cabelo + Barba</h3>
+                        <p>Combo completo transformador</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1598439210625-5067c578f3f6?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Corte Texturizado</h3>
+                        <p>Volume e movimento natural</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1616068828170-e5be19ceb093?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Estilo Executivo</h3>
+                        <p>Profissionalismo e elegância</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Degradê Baixo</h3>
+                        <p>Transição suave e discreta</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openModal(this)">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1622296584785-4bf08b7e8c23?w=600');"></div>
+                    <div class="gallery-overlay">
+                        <h3>Corte Desfiado</h3>
+                        <p>Leveza e estilo contemporâneo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instagram CTA -->
+            <div class="instagram-cta">
+                <h2><i class="fab fa-instagram"></i> Siga no Instagram</h2>
+                <p>Veja mais fotos dos nossos trabalhos e fique por dentro das novidades!</p>
+                <a href="https://instagram.com/barbeariabomcorte1" class="btn btn-instagram" target="_blank">
+                    <i class="fab fa-instagram"></i> @barbeariabomcorte1
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Gostou do que viu?</h2>
+            <p>Agende seu horário e tenha o mesmo resultado!</p>
+            <a href="https://wa.me/5511946171396?text=Olá! Gostaria de agendar um horário." class="btn btn-primary" target="_blank">
+                <i class="fab fa-whatsapp"></i> Agendar Horário
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bom Corte</h3>
+                <p>A barbearia tradicional da região, oferecendo serviços de qualidade para o homem que valoriza o cuidado clássico com a aparência.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="mostruario.html">Mostruário</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Rua Albano Cássio, 32</p>
+                <p>Vila Constança - São Paulo/SP</p>
+                <p>(11) 9 4617-1396</p>
+                <p>contato@bomcorte.com.br</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Bom Corte Barbearia. Todos os direitos reservados.</p>
+            <a href="#" class="back-to-top">Voltar ao Topo ↑</a>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511946171396?text=Olá! Gostaria de agendar um horário." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal for Image Zoom -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <div class="modal-content">
+            <div class="modal-close">×</div>
+            <img src="" alt="Imagem ampliada" class="modal-image" id="modalImage">
+        </div>
+    </div>
+
+    <script>
+        // Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Back to top
+        document.querySelector('.back-to-top').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Image Modal
+        function openModal(element) {
+            const imageUrl = element.querySelector('.gallery-image').style.backgroundImage.slice(5, -2);
+            document.getElementById('modalImage').src = imageUrl;
+            document.getElementById('imageModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

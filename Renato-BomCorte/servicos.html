@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - Barbearia Bom Corte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B4513;
+            --primary-dark: #6B3410;
+            --dark: #1a1a1a;
+            --darker: #0f0f0f;
+            --light: #f5f5f5;
+            --gray: #666;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: var(--light);
+            border: 2px dashed var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+
+        .logo-placeholder i {
+            font-size: 2rem;
+            color: var(--gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .services-intro h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .services-intro p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .service-price.consult {
+            font-size: 1.2rem;
+        }
+
+        .btn-service {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .btn-service:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Info Banner */
+        .info-banner {
+            background: var(--light);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .info-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .info-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .info-item p {
+            color: var(--gray);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--darker);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #e8f4f8;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--gray);
+        }
+
+        .back-to-top {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-top:hover {
+            color: var(--primary);
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                left: -100%;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                padding: 2rem;
+                transition: left 0.3s;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-placeholder">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="mostruario.html">Mostruário</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Nossos Serviços</h1>
+        <p>Qualidade e tradição em cada atendimento</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="services-intro">
+                <h2>Conheça Nossos Serviços</h2>
+                <p>Oferecemos uma variedade de serviços para cuidar da sua aparência com o melhor da tradição barbeira</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Corte -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Corte</h3>
+                    <p>Corte tradicional com tesoura e máquina, acabamento profissional</p>
+                    <span class="service-price">R$ 35,00</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de agendar um Corte" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </a>
+                </div>
+
+                <!-- Corte Degradê Navalhado -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Corte Degradê Navalhado</h3>
+                    <p>Degradê perfeito com acabamento em navalha para o visual moderno</p>
+                    <span class="service-price">R$ 35,00</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de agendar um Corte Degradê Navalhado" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </a>
+                </div>
+
+                <!-- Barba -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Barba</h3>
+                    <p>Design, aparação e finalização com toalha quente</p>
+                    <span class="service-price">R$ 35,00</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de agendar um serviço de Barba" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </a>
+                </div>
+
+                <!-- Cabelo + Barba -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Cabelo + Barba</h3>
+                    <p>Combo completo para sair renovado e confiante</p>
+                    <span class="service-price">R$ 60,00</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de agendar Cabelo + Barba" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </a>
+                </div>
+
+                <!-- Alisamento -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Alisamento</h3>
+                    <p>Tratamento para alisar os fios com produtos de qualidade</p>
+                    <span class="service-price">R$ 40,00</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de agendar um Alisamento" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </a>
+                </div>
+
+                <!-- Progressiva + Corte -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Progressiva + Corte</h3>
+                    <p>Tratamento progressivo completo com corte incluso</p>
+                    <span class="service-price">R$ 110,00</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de agendar Progressiva + Corte" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agendar
+                    </a>
+                </div>
+
+                <!-- Acabamento Pezinho -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3>Acabamento Pezinho</h3>
+                    <p>Finalização e manutenção do corte na nuca</p>
+                    <span class="service-price consult">Consultar</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de consultar o valor do Acabamento Pezinho" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Consultar
+                    </a>
+                </div>
+
+                <!-- Corte + Alisamento -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Corte + Alisamento</h3>
+                    <p>Combo de corte com alisamento para visual impecável</p>
+                    <span class="service-price consult">Consultar</span>
+                    <a href="https://wa.me/5511946171396?text=Gostaria de consultar o valor de Corte + Alisamento" class="btn-service" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Consultar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Banner -->
+    <section class="info-banner">
+        <div class="container">
+            <h2>Por que escolher a Bom Corte?</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Profissionais Qualificados</h3>
+                    <p>Barbeiros experientes e certificados</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-box-open"></i>
+                    <h3>Produtos de Qualidade</h3>
+                    <p>Utilizamos as melhores marcas do mercado</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Atendimento Rápido</h3>
+                    <p>Agende e seja atendido no horário</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-smile"></i>
+                    <h3>Satisfação Garantida</h3>
+                    <p>Seu sorriso é nossa recompensa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Pronto para Agendar?</h2>
+            <p>Entre em contato pelo WhatsApp e garanta seu horário</p>
+            <a href="https://wa.me/5511946171396?text=Olá! Gostaria de agendar um horário." class="btn btn-primary" target="_blank">
+                <i class="fab fa-whatsapp"></i> Agendar Agora
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bom Corte</h3>
+                <p>A barbearia tradicional da região, oferecendo serviços de qualidade para o homem que valoriza o cuidado clássico com a aparência.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="mostruario.html">Mostruário</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Rua Albano Cássio, 32</p>
+                <p>Vila Constança - São Paulo/SP</p>
+                <p>(11) 9 4617-1396</p>
+                <p>contato@bomcorte.com.br</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Bom Corte Barbearia. Todos os direitos reservados.</p>
+            <a href="#" class="back-to-top">Voltar ao Topo ↑</a>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511946171396?text=Olá! Gostaria de agendar um horário." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Back to top
+        document.querySelector('.back-to-top').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
