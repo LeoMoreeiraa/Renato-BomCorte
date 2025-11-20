@@ -1,0 +1,80 @@
+/* 
+ * Guia de Uso das Imagens Locais
+ * Barbearia Bom Corte
+ */
+
+/* EXEMPLO: Como usar as imagens nas diferentes seções */
+
+/* 1. LOGO NO HEADER */
+.logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+/* Use: <img src="images/logo/logo.png" alt="Bom Corte Barbearia"> */
+
+/* 2. IMAGEM DE FUNDO HERO SECTION */
+.hero {
+    background-image: url('images/background/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* 3. GALERIA DE CORTES */
+.gallery-item {
+    background-image: url('images/gallery/corte-01.jpg');
+}
+/* Exemplo para diferentes cortes:
+   - images/gallery/corte-degradee-01.jpg
+   - images/gallery/corte-social-01.jpg  
+   - images/gallery/barba-completa-01.jpg
+*/
+
+/* 4. PÁGINA DE SERVIÇOS */
+.service-image {
+    background-image: url('images/services/servico-corte.jpg');
+}
+
+/* 5. PÁGINA DE CONTATO */
+.contact-banner {
+    background-image: url('images/contact/contato-banner.jpg');
+}
+
+/* 6. FAVICON */
+/* Adicione no <head> de cada HTML:
+   <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+*/
+
+/*
+ESTRUTURA RECOMENDADA DE ARQUIVOS:
+
+images/
+├── logo/
+│   ├── logo.png (logo principal)
+│   ├── logo-white.png (versão branca)
+│   └── favicon.ico
+├── background/
+│   ├── hero-background.jpg
+│   ├── barbearia-externa.jpg
+│   └── barbearia-interna.jpg
+├── gallery/
+│   ├── corte-01.jpg
+│   ├── corte-02.jpg
+│   ├── degradee-01.jpg
+│   ├── barba-01.jpg
+│   └── combo-01.jpg
+├── services/
+│   ├── servico-corte.jpg
+│   ├── servico-barba.jpg
+│   └── equipamentos.jpg
+└── contact/
+    ├── contato-banner.jpg
+    ├── mapa-localizacao.jpg
+    └── equipe.jpg
+
+DICAS:
+- Use JPG para fotos (menor tamanho)
+- Use PNG para logos (transparência)
+- Mantenha imagens otimizadas (max 500KB)
+- Use nomes descritivos sem espaços
+*/

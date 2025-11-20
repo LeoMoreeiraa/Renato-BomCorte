@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo - Como Usar Imagens Locais</title>
+    <!-- FAVICON LOCAL -->
+    <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+    
+    <style>
+        .exemplo-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        
+        .exemplo-galeria {
+            width: 300px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin: 10px;
+            border: 2px solid #ddd;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        h2 {
+            color: #8B4513;
+            border-bottom: 2px solid #8B4513;
+            padding-bottom: 10px;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Guia de Uso das Imagens Locais - Barbearia Bom Corte</h1>
+        
+        <div class="section">
+            <h2>1. Logo da Barbearia</h2>
+            <p>Substitua o placeholder do logo por uma imagem real:</p>
+            
+            <!-- EXEMPLO DE USO DO LOGO -->
+            <img src="images/logo/logo.png" alt="Bom Corte Barbearia" class="exemplo-logo">
+            
+            <div class="code-example">
+                <strong>HTML:</strong><br>
+                &lt;img src="images/logo/logo.png" alt="Bom Corte Barbearia"&gt;
+            </div>
+            
+            <div class="code-example">
+                <strong>CSS (se quiser como background):</strong><br>
+                .logo {<br>
+                &nbsp;&nbsp;background-image: url('images/logo/logo.png');<br>
+                &nbsp;&nbsp;background-size: contain;<br>
+                &nbsp;&nbsp;background-repeat: no-repeat;<br>
+                }
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Galeria de Cortes</h2>
+            <p>Substitua as imagens do Unsplash por fotos reais dos seus trabalhos:</p>
+            
+            <!-- EXEMPLOS PARA A GALERIA -->
+            <div class="exemplo-galeria" style="background-image: url('images/gallery/corte-01.jpg');"></div>
+            <div class="exemplo-galeria" style="background-image: url('images/gallery/degradee-01.jpg');"></div>
+            <div class="exemplo-galeria" style="background-image: url('images/gallery/barba-01.jpg');"></div>
+            
+            <div class="code-example">
+                <strong>No mostruario.html, substitua:</strong><br>
+                ANTES: style="background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600');"<br>
+                <br>
+                DEPOIS: style="background-image: url('images/gallery/corte-01.jpg');"
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Imagem de Fundo da Homepage</h2>
+            <p>Para adicionar uma foto da barbearia como fundo:</p>
+            
+            <div class="code-example">
+                <strong>CSS:</strong><br>
+                .hero {<br>
+                &nbsp;&nbsp;background-image: url('images/background/hero-background.jpg');<br>
+                &nbsp;&nbsp;background-size: cover;<br>
+                &nbsp;&nbsp;background-position: center;<br>
+                &nbsp;&nbsp;background-attachment: fixed;<br>
+                }
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Estrutura de Arquivos Criada</h2>
+            <div class="code-example">
+                📁 images/<br>
+                ├── 📄 README.md (documentação)<br>
+                ├── 📄 guia-de-uso.css (exemplos CSS)<br>
+                ├── 📁 logo/ (logo da barbearia)<br>
+                ├── 📁 gallery/ (fotos dos cortes)<br>
+                ├── 📁 background/ (imagens de fundo)<br>
+                ├── 📁 services/ (imagens dos serviços)<br>
+                └── 📁 contact/ (imagens do contato)
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Próximos Passos</h2>
+            <ol>
+                <li>📸 <strong>Tire fotos dos seus trabalhos</strong> e coloque na pasta gallery/</li>
+                <li>🏪 <strong>Fotografe a barbearia</strong> (externa/interna) para background/</li>
+                <li>🎨 <strong>Crie ou obtenha o logo</strong> da barbearia para logo/</li>
+                <li>👥 <strong>Foto da equipe</strong> para a página de contato</li>
+                <li>🔧 <strong>Substitua as URLs</strong> nos arquivos HTML pelos caminhos locais</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>6. Dicas Importantes</h2>
+            <ul>
+                <li>✅ Use JPG para fotos (menor tamanho)</li>
+                <li>✅ Use PNG para logos (suporte à transparência)</li>
+                <li>✅ Otimize as imagens (máximo 500KB cada)</li>
+                <li>✅ Use nomes descritivos sem espaços</li>
+                <li>✅ Resolução recomendada para galeria: 800x600px</li>
+                <li>✅ Resolução recomendada para backgrounds: 1920x1080px</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
